@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <Layout.Header />
 
-      <div>
+      <div className='flex flex-row justify-center flex-1'>
         <Layout.History />
         <Layout.Graphics />
       </div>

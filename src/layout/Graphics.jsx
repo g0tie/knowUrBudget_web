@@ -1,7 +1,11 @@
+import Graph from "../components/Graph"
+
 const Graphics = () => {
     return (
-      <div className="">
-      
+      <div className="flex flex-row items-center justify-around">
+        <Graph title="Cette semaine"/>
+        <Graph title="Ces Derniers mois"/>
+
       </div>
     );
   }
