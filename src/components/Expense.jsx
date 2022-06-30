@@ -10,7 +10,7 @@ const Expense = ({title, amount, date, type}) => {
                     <span>{type}</span>
                 </div>
                 
-                <span className="flex-grow text-right text-5xl">{amount} €</span>
+                <span className="flex-grow text-right text-4xl">{amount} €</span>
             </div>
 
           </div>
