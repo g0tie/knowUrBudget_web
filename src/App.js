@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <Layout.Header />
 
-      <div className='sm:flex-col flex lg:flex-row justify-center items-center flex-1'>
+      <div className='xs:flex-col flex lg:flex-row justify-evenly items-center flex-1'>
         <Layout.History />
         <Layout.Graphics />
       </div>

@@ -4,7 +4,7 @@ import TypeDropdown from "../components/TypeDropdown";
 const History = () => {
 
     return (
-      <div className="p-4 lg:order-none sm:order-1">
+      <div className="p-4 lg:order-none xs:order-1">
         
         <TypeDropdown typelist={["Alimentaire", "Divertissement", "Vehicule"]}/>
         <div 
