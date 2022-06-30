@@ -4,7 +4,7 @@ import TypeDropdown from "../components/TypeDropdown";
 const History = () => {
 
     return (
-      <div className="p-4">
+      <div className="p-4 lg:order-none sm:order-1">
         
         <TypeDropdown typelist={["Alimentaire", "Divertissement", "Vehicule"]}/>
         <div 
@@ -12,7 +12,7 @@ const History = () => {
           height:"70vh",
           width:"470px"
           }}
-        className="scrollbar scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-indigo-600 scrollbar-track-gray-100  overflow-y-auto">
+        className="sm:w-full scrollbar scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-indigo-600 scrollbar-track-gray-100  overflow-y-auto">
           <Expense title="Burger King" date="12/05/2022" type="alimentaire" amount={25}/>
           <Expense title="Burger King" date="12/05/2022" type="alimentaire" amount={25}/>
           <Expense title="Burger King" date="12/05/2022" type="alimentaire" amount={25}/>

@@ -1,7 +1,24 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, 
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    ArcElement, 
+    Tooltip, 
+    Legend,
+    Title 
+} from 'chart.js';
+import { Pie, Bar } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(
+    ArcElement, 
+    Tooltip, 
+    Legend,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+);
 
 const data = {
   labels: ['Alimentaire', 'Divertissement', 'Vehicule'],
@@ -41,11 +58,16 @@ const options = {
     }
 };
 
-const Graph = ({title}) => {
+const Graph = ({title, type}) => {
     return(
         <div className='w-96'>
             <h1 className='text-center text-2xl font-bold'>{title}</h1>
-            <Pie data={data} options={options} />
+            {
+                type === "pie" ?
+                <Pie data={data} options={options} />
+                :
+                <Bar options={options} data={data} />
+            }
         </div>
       
     )

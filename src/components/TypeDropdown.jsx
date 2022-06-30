@@ -1,7 +1,7 @@
 const TypeDropdown = ({typelist}) => {
     return (
       <div className="flex flex-row items-center my-2 ">
-        <p>Trier par: </p> 
+        <p>Sélectionner un type: </p> 
         <select className="ml-2 p-2 form-select appearance-none
     w-56
       block
