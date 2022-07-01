@@ -9,27 +9,36 @@ const createDatabase = () =>
     `);
 }
 
-const createTables = () =>
+const  createTables = async () =>
 {
-    alasql(`CREATE TABLE IF NOT EXISTS Expenses(id INT AUTOINCREMENT PRIMARY KEY, name STRING, amount INT, date DATE);`)
-    alasql(`CREATE TABLE IF NOT EXISTS Types(id INT AUTOINCREMENT PRIMARY KEY, name STRING);`)
-    alasql(`CREATE TABLE IF NOT EXISTS Limit(id INT AUTOINCREMENT PRIMARY KEY, amount INT, date DATE));`)
+    try {
+
+        alasql(`CREATE TABLE IF NOT EXISTS Expenses(id INT AUTOINCREMENT PRIMARY KEY, name STRING, amount INT, date DATE);`)
+        alasql(`CREATE TABLE IF NOT EXISTS Types(id INT AUTOINCREMENT PRIMARY KEY, name STRING);`)
+        alasql(`CREATE TABLE IF NOT EXISTS Limit(id INT AUTOINCREMENT PRIMARY KEY, amount INT, date DATE);`)
+    } catch (e) {
+        console.error(`Error occured: ${e}`);
+    }
 }
 
-const insertData = (table) =>
+const insertData = async (table,payload) =>
 {
-    switch (table, payload) {
-        case "expenses":
-            alasql(`INSERT INTO Expenses VALUES ?`, [payload]);
-        break;
+    try {
+        switch (table) {
+            case "expenses":
+                alasql(`INSERT INTO Expenses VALUES ?`, [payload]);
+            break;
 
-        case "types":
-            alasql(`INSERT INTO Types VALUES ?`, [payload]);
-        break;
+            case "types":
+                alasql(`INSERT INTO Types VALUES ?`, [payload]);
+            break;
 
-        case "limit":
-            alasql(`INSERT INTO Limit VALUES ?`, [payload]);
-        break;
+            case "limit":
+                alasql(`INSERT INTO Limit VALUES ?`, [payload]);
+            break;
+        }
+    } catch (e) {
+        console.error(`Error occured: ${e}`);
     }
 }
 

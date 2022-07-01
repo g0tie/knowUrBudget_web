@@ -1,11 +1,23 @@
 import * as Layout from './layout';
 import AddExpenseBtn from './components/AddExpenseBtn';
 import { useEffect } from 'react';
+import  {
+  createDatabase,
+  createTables,
+  insertData,
+  getData,
+  getDatas,
+  updateData,
+  deleteData
+} from "./store/database";
 
 function App() {
   
   useEffect(() => {
-    console.log(expenses);
+    createDatabase();
+    createTables();
+
+    insertData("limit", {amount: 25, date:Date.now()})
   }, []);
 
   return (
