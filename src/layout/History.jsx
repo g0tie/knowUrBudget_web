@@ -17,7 +17,7 @@ const History = () => {
         className="sm:w-full scrollbar scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-indigo-600 scrollbar-track-gray-100  overflow-y-auto">
           {
             state.expenses.map(expense => 
-              <Expense title={expense.name} date={expense.date} type={expense.type} amount={expense.amount}/>
+              <Expense key={expense.id} title={expense.name} date={expense.date} type={expense.type} amount={expense.amount}/>
             )
           }
         </div>

@@ -22,10 +22,10 @@ function App() {
 
   return (
     <MainProvider>
-      <div className="App">
+      <div className="App p-8">
         <Layout.Header />
 
-        <div className='xs:flex-col flex lg:flex-row justify-evenly items-center flex-1'>
+        <div className='xs:flex-col flex lg:flex-row justify-evenly md:items-center'>
           <Layout.History />
           <Layout.Graphics />
         </div>

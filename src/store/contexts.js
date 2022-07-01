@@ -39,8 +39,8 @@ function MainProvider({children}) {
         ],
         limit: {value:150},
         expenses: [
-          {name:"Burger King", amount:"36", type:"alimentaire", date:"26/05/2021"},
-          {name:"Burger King", amount:"45", type:"alimentaire", date:"13/05/2021"},
+          {id:0, name:"Burger King", amount:"36", type:"alimentaire", date:"26/05/2021"},
+          {id:1, name:"Burger King", amount:"45", type:"alimentaire", date:"13/05/2021"},
         ],
         user: {
           name:"Pablo"

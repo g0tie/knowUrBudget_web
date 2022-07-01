@@ -30,9 +30,9 @@ const data = {
 
 const Graphics = () => {
   const {state} = useMainContext();
-  
+
     return (
-      <div className="flex xs:flex-col sm:flex-row items-center md:justify-around ">
+      <div className="flex md:flex-1 xs:flex-col sm:flex-row items-center md:justify-around ">
         <Graph title="Cette semaine" type="pie" data={data}/>
         <Graph title="Ces Derniers mois" type="bar" data={data}/>
 
