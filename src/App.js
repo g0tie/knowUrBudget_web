@@ -11,26 +11,28 @@ import  {
   deleteData
 } from "./store/database";
 
+import {MainProvider, useMainContext} from "./store/contexts"
+
 function App() {
   
   useEffect(() => {
     createDatabase();
     createTables();
-
-    insertData("limit", {amount: 25, date:Date.now()})
   }, []);
 
   return (
-    <div className="App">
-      <Layout.Header />
+    <MainProvider>
+      <div className="App">
+        <Layout.Header />
 
-      <div className='xs:flex-col flex lg:flex-row justify-evenly items-center flex-1'>
-        <Layout.History />
-        <Layout.Graphics />
+        <div className='xs:flex-col flex lg:flex-row justify-evenly items-center flex-1'>
+          <Layout.History />
+          <Layout.Graphics />
+        </div>
+          
+          <AddExpenseBtn />
       </div>
-        
-        <AddExpenseBtn />
-    </div>
+    </MainProvider>
   );
 }
 
