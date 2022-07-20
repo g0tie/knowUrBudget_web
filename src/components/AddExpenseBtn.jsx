@@ -19,13 +19,13 @@ const AddExpenseBtn = () => {
             <Modal isOpen={isOpen} title="Ajouter une dépense" action={() => alert("test")} closeAction={setIsOpen}> 
             <form className="">
                 <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Titre
                 </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Titre" />
                 </div>
                 <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Montant
                 </label>
                 <input 

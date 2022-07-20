@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import Modal from "./Modal";
 import { calculatePercentage } from '../helpers/common';
+import { useMainContext } from '../store/contexts';
 
-const ProgressBar = ({current, limit}) => {
-    let progress = calculatePercentage(current, limit);
-    const [isOpen, setIsOpen] = useState(false)
+const ProgressBar = ({}) => {
+    let {state, dispatch} = useMainContext();
+    
+    const [isOpen, setIsOpen] = useState(false);
+    const [limit, setLimit] = useState(state.limit.value);
 
+    let progress = calculatePercentage(state.totalExpenses, limit);
+    
+    function changeLimit()
+    {
+      dispatch({type:'setLimit', payload:limit});
+      setIsOpen(false);
+    }
     return (
       <div className="flex flex-col" style={{width: "400px"}}>
         
@@ -15,7 +25,7 @@ const ProgressBar = ({current, limit}) => {
         
  
       <div className="flex felx-row justify-end">
-         <span className="text-right">{current} / {limit}</span>
+         <span className="text-right">{state.totalExpenses} / {limit}</span>
          <button 
          onClick={() => setIsOpen(true)}
          style={{transform: "translateY(-13px)"}} className="text-indigo-600 text-center ml-2 shadow-lg rounded-full bg-white h-10 w-10">
@@ -28,13 +38,14 @@ const ProgressBar = ({current, limit}) => {
 
 
 
-      <Modal isOpen={isOpen} title="Editer la limite mensuelle" action={() => alert("test")} closeAction={setIsOpen}> 
+      <Modal isOpen={isOpen} title="Editer la limite mensuelle" action={changeLimit} closeAction={setIsOpen}> 
           <form className="">
               <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
-                  Titre
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                  Limite:
               </label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Titre" />
+              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+              id="username" min={0} type="number" value={limit} onChange={(e) => setLimit(e.target.value)} placeholder="Nouvelle limite" />
               </div>
           </form>
         </Modal>

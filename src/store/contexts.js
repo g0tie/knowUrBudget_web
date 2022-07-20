@@ -1,13 +1,15 @@
 import React from "react";
+import {getDatas, getData} from "./database";
+import { calculateTotalExpenses } from "../helpers/common";
+import {updateData} from "../store/database";
 
 const MainContext = React.createContext();
 
-
 function MainReducer(state, action) {
     switch (action.type) {
-      case 'updateLimit': {
-        state.limit = action.payload;
-        return;
+      case 'setLimit': {
+        updateData(1,'limit', action.payload);
+        return state;
       }
 
       case 'removeExpense': {
@@ -26,22 +28,17 @@ function MainReducer(state, action) {
       }
     }
 }
+
     
 function MainProvider({children}) {
+    let expenses = getDatas('expenses');
+    let totalExpenses = calculateTotalExpenses(expenses);
+
     const [state, dispatch] = React.useReducer(MainReducer, {
-        types: [
-          "Alimentaire",
-          "Vehicule",
-          "Divertissement",
-          "Santé",
-          "Vêtements",
-          "Sport"
-        ],
-        limit: {value:150},
-        expenses: [
-          {id:0, name:"Burger King", amount:"36", type:"alimentaire", date:"26/05/2021"},
-          {id:1, name:"Burger King", amount:"45", type:"alimentaire", date:"13/05/2021"},
-        ],
+        types: getDatas("types"),
+        limit: {value: getData(1, 'limit').amount},
+        expenses,
+        totalExpenses,
         user: {
           name:"Pablo"
         }

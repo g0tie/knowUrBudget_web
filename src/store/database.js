@@ -13,9 +13,10 @@ const  createTables = async () =>
 {
     try {
 
-        alasql(`CREATE TABLE IF NOT EXISTS Expenses(id INT AUTOINCREMENT PRIMARY KEY, name STRING, amount INT, date DATE);`)
-        alasql(`CREATE TABLE IF NOT EXISTS Types(id INT AUTOINCREMENT PRIMARY KEY, name STRING);`)
+        alasql(`CREATE TABLE IF NOT EXISTS Expenses(id INT AUTOINCREMENT PRIMARY KEY, name STRING, amount INT, date DATE, typeid INT REFERENCES Types(id));`)
+        alasql(`CREATE TABLE IF NOT EXISTS Types(id INT AUTOINCREMENT PRIMARY KEY, name STRING, UNIQUE(name));`)
         alasql(`CREATE TABLE IF NOT EXISTS Limit(id INT AUTOINCREMENT PRIMARY KEY, amount INT, date DATE);`)
+        
     } catch (e) {
         console.error(`Error occured: ${e}`);
     }
@@ -46,16 +47,13 @@ const getData = (id, table) =>
 {
     switch (table) {
         case "expenses":
-            alasql(`SELECT * FROM Expenses WHERE id = ?`, [id]);
-        break;
+           return alasql(`SELECT * FROM Expenses WHERE id = ?`, [id]);
 
         case "types":
-            alasql(`SELECT * FROM Types WHERE id = ?`, [id]);
-        break;
+           return alasql(`SELECT * FROM Types WHERE id = ?`, [id])[0];
 
         case "limit":
-            alasql(`SELECT * FROM Limit WHERE id = ?`, [id]);
-        break;
+           return alasql(`SELECT * FROM Limit WHERE id = ?`, [id])[0];
     }
 
 }
@@ -63,16 +61,13 @@ const getData = (id, table) =>
 const getDatas = (table) => {
     switch (table) {
         case "expenses":
-            alasql(`SELECT * FROM Expenses`);
-        break;
+           return alasql(`SELECT * FROM Expenses`);
 
         case "types":
-            alasql(`SELECT * FROM Types`);
-        break;
+           return alasql(`SELECT * FROM Types`);
 
         case "limit":
-            alasql(`SELECT * FROM Limit`);
-        break;
+           return alasql(`SELECT * FROM Limit`);
     }
 }
 
@@ -88,7 +83,7 @@ const updateData = (id, table, payload) =>
         break;
 
         case "limit":
-            alasql(`UPDATE FROM Limit SET ? WHERE id = ?`, [payload, id]);
+            alasql(`UPDATE Limit SET amount = ? WHERE id = ?`, [payload, id]);
         break;
     }
 

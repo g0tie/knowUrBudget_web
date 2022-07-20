@@ -4,10 +4,9 @@ import {useMainContext} from "../store/contexts"
 
 const Header = () => {
     const {state} = useMainContext()
-
     return (
       <div className="m-5 flex flex-row justify-center  ">
-        <ProgressBar current={state.limit.value} limit={500} />
+        <ProgressBar />
         <ProfileIcon username={state.user.name}/>
       </div>
     );

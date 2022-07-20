@@ -19,7 +19,7 @@ const TypeDropdown = ({typelist}) => {
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
             {
                 typelist && typelist.map((type, index) => (
-                    <option key={index} value={index}>{type}</option>
+                    <option key={type.id} value={type.id}>{type.name}</option>
                 ))
             }
         </select>
