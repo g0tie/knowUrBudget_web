@@ -9,7 +9,7 @@ const History = () => {
     return (
       <div className="p-4 lg:order-none xs:order-1">
         
-        <TypeDropdown typelist={state.types}/>
+        <TypeDropdown/>
         <div 
         style={{
           height:"70vh",

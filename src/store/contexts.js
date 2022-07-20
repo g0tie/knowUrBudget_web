@@ -1,11 +1,12 @@
 import React from "react";
 import {getDatas, getData} from "./database";
 import { calculateTotalExpenses } from "../helpers/common";
-import {updateData} from "../store/database";
+import {updateData, getExpensesByType} from "../store/database";
 
 const MainContext = React.createContext();
 
 function MainReducer(state, action) {
+
     switch (action.type) {
       case 'setLimit': {
         updateData(1,'limit', action.payload);
@@ -21,6 +22,13 @@ function MainReducer(state, action) {
             ...state.expenses, 
                action.payload
         ];
+      }
+
+      case 'sortExpensesByType': {
+        let expenses = getExpensesByType(parseInt(action.payload));
+        return {...state, 
+          expenses
+        }
       }
 
       default: {

@@ -58,6 +58,13 @@ const getData = (id, table) =>
 
 }
 
+const getExpensesByType = (typeId) => {
+    if (isNaN(typeId)) return getDatas("expenses");
+
+    return alasql(`SELECT * FROM Expenses WHERE typeid = ?`, [typeId])
+    .map(expense => ({...expense, typeid:typeId})  );
+}
+
 const getDatas = (table) => {
     switch (table) {
         case "expenses":
@@ -114,5 +121,6 @@ export {
     getData,
     getDatas,
     updateData,
-    deleteData
+    deleteData,
+    getExpensesByType
 }

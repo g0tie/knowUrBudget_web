@@ -6,7 +6,7 @@ function calculatePercentage(value, max) {
 }
 
 function getTypeName(id) {
-    return getData(id, 'types').name;
+    return getData(id, 'types')?.name;
 }
 
 function calculateTotalExpenses(expenses)
