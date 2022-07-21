@@ -1,7 +1,7 @@
 import React from "react";
 import {getDatas, getData} from "./database";
 import { calculateTotalExpenses } from "../helpers/common";
-import {updateData, getExpensesByType} from "../store/database";
+import {updateData, getExpensesByType, insertData} from "../store/database";
 
 const MainContext = React.createContext();
 
@@ -9,6 +9,7 @@ function MainReducer(state, action) {
 
     switch (action.type) {
       case 'setLimit': {
+        console.log('yop')
         updateData(1,'limit', action.payload);
         return state;
       }
@@ -18,10 +19,11 @@ function MainReducer(state, action) {
       }
 
       case 'addExpense': {
-        return [
-            ...state.expenses, 
-               action.payload
-        ];
+        insertData('expenses', action.payload);
+        state.expenses = getDatas('expenses');
+        state.totalExpenses = calculateTotalExpenses(state.expenses);
+        console.log(state);
+        return state;
       }
 
       case 'sortExpensesByType': {

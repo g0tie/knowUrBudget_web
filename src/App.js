@@ -1,7 +1,6 @@
 import * as Layout from './layout';
 import AddExpenseBtn from './components/AddExpenseBtn';
 import {MainProvider, useMainContext} from "./store/contexts"
-import { useEffect } from 'react';
 
 
 function App() {
